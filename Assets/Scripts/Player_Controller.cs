@@ -2,27 +2,46 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    public float rotSpeed;
     public float moveSpeed;
+
+    public float mouseSensitivity = 200f;
+    public Camera playerCam;
+
+    private float xRotation = 0;
+
+    private bool started;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rotSpeed = 10f;
         moveSpeed = 10f;
+        Cursor.lockState = CursorLockMode.Locked;
+        started = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
+        if (!started)
         {
-            transform.Rotate(Vector3.up, -rotSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.E))
+            started = true;
+        } else
         {
-            transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
+            //ROTATION
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+            //rotate up down
+            xRotation -= mouseY;
+
+            //so player can only look up/down 45 degrees
+            xRotation = Mathf.Clamp(xRotation, -45f, 45f);
+            playerCam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+            //rotate left right
+            transform.Rotate(Vector3.up * mouseX);
         }
+
 
         //MOVEMENT
         if (Input.GetKey(KeyCode.UpArrow))
