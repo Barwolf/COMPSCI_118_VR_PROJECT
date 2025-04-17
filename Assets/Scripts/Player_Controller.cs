@@ -11,6 +11,13 @@ public class Player_Controller : MonoBehaviour
 
     private bool started;
 
+    public void StartGame()
+    {
+        // lock the cursor to the middle of screen
+        Cursor.lockState = CursorLockMode.Locked;
+        started = true;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,10 +29,7 @@ public class Player_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!started)
-        {
-            started = true;
-        } else
+        if(started)
         {
             //ROTATION
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
