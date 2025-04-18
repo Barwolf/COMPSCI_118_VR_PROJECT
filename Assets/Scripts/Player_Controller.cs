@@ -22,6 +22,7 @@ public class Player_Controller : MonoBehaviour
     {
         Debug.Log("QUIT!");
         Application.Quit();
+        Application.OpenURL("about:blank");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
