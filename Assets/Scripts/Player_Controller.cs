@@ -22,7 +22,7 @@ public class Player_Controller : MonoBehaviour
     {
         Debug.Log("QUIT!");
         Application.Quit();
-        Application.OpenURL("about:blank");
+        //Application.OpenURL("about:blank");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -68,6 +68,12 @@ public class Player_Controller : MonoBehaviour
             if (Input.GetKey(KeyCode.D))
             {
                 transform.Translate(-Vector3.left * moveSpeed * Time.deltaTime);
+            }
+
+            // press Q to quit while in game
+            if (Input.GetKey(KeyCode.Q))
+            {
+                QuitGame();
             }
 
         }
