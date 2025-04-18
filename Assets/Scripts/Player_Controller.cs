@@ -18,11 +18,17 @@ public class Player_Controller : MonoBehaviour
         started = true;
     }
 
+    public void QuitGame()
+    {
+        Debug.Log("QUIT!");
+        Application.Quit();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveSpeed = 10f;
-        Cursor.lockState = CursorLockMode.Locked;
+    //    Cursor.lockState = CursorLockMode.Locked;
         started = false;
     }
 
@@ -44,25 +50,25 @@ public class Player_Controller : MonoBehaviour
 
             //rotate left right
             transform.Rotate(Vector3.up * mouseX);
-        }
 
+            //MOVEMENT
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Translate(-Vector3.left * moveSpeed * Time.deltaTime);
+            }
 
-        //MOVEMENT
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(-Vector3.left * moveSpeed * Time.deltaTime);
         }
 
     }
