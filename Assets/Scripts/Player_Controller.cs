@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -20,9 +21,15 @@ public class Player_Controller : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("QUIT!");
         Application.Quit();
         //Application.OpenURL("about:blank");
+    }
+
+    public void ReturnToMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene("Assignment_1");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -73,7 +80,7 @@ public class Player_Controller : MonoBehaviour
             // press Q to quit while in game
             if (Input.GetKey(KeyCode.Q))
             {
-                QuitGame();
+                ReturnToMenu();
             }
 
         }
